@@ -35,7 +35,6 @@ class FeatureContext extends BehatContext
      */
     public function iAmNotYetPlaying()
     {
-        throw new PendingException();
     }
 
     /**
