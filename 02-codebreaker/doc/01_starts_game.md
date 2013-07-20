@@ -166,3 +166,14 @@ It's time to go back to `CodebreakerApplication`, if we read the cookbook entry 
     {
         $this->get('codebreaker')->shouldReturnAnInstanceOf('Aleherse\Codebreaker\CodebreakerCommand');
     }
+
+And now we only need to add the `getDefaultCommands` method to make this example pass
+
+    protected function getDefaultCommands()
+    {
+        $defaultCommands = parent::getDefaultCommands();
+
+        $defaultCommands[] = new CodebreakerCommand();
+
+        return $defaultCommands;
+    }

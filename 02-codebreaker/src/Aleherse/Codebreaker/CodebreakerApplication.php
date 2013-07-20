@@ -12,4 +12,13 @@ class CodebreakerApplication extends Application
     {
         return 'codebreaker';
     }
+
+    protected function getDefaultCommands()
+    {
+        $defaultCommands = parent::getDefaultCommands();
+
+        $defaultCommands[] = new CodebreakerCommand();
+
+        return $defaultCommands;
+    }
 }
