@@ -200,3 +200,16 @@ Again we have a failing example and adding this method to `CodebreakerApplicatio
 
         return $inputDefinition;
     }
+
+Following all this steps we have created an application with a single command but we don't have a way to execute it, it's time to create the script to run the application. All we need to do is to create a `codebreaker` file in the root of the project and add this code
+
+    #!/usr/bin/env php
+    <?php
+    require 'vendor/autoload.php';
+
+    use Aleherse\Codebreaker\CodebreakerApplication;
+
+    $app = new CodebreakerApplication();
+    $app->run();
+
+Now if we run `./codebreaker` we can play the game
