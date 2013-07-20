@@ -224,4 +224,11 @@ This time we encounter a logic exception when we execute the game, this is becau
         $this->shouldNotThrow(new \LogicException('You must override the execute() method in the concrete command class.'))->duringRun($input, $output);
     }
 
-And as always first we find a failing example
+And as always first we find a failing example and if we override the execute method then the example is passing
+
+    use Symfony\Component\Console\Input\InputInterface;
+    use Symfony\Component\Console\Output\OutputInterface;
+
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+    }
