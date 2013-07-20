@@ -42,4 +42,12 @@ This step should create an instance of `CodebreakerApplication` class and starts
 		}
     }
 
-If we execute behat we see a fatal error
+If we execute behat we see a fatal error, we have jumped into a failing step it's time to change to phpspec, we need to execute the next command to create the specification file for the `CodebreakerApplication` class
+
+    bin/phpspec desc Aleherse/Codebreaker/CodebreakerApplication
+
+Executing the next line we check all the specification files, the first time executing phpspec we'll be asked if we want to create the class, answer yes.
+
+    bin/phpspec run
+
+Next time executing the previous command we see a green bar.
