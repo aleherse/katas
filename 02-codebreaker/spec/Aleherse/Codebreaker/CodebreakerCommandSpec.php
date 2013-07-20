@@ -11,4 +11,9 @@ class CodebreakerCommandSpec extends ObjectBehavior
     {
         $this->shouldHaveType('Aleherse\Codebreaker\CodebreakerCommand');
     }
+
+    function it_should_be_a_console_command()
+    {
+        $this->shouldBeAnInstanceOf('Symfony\Component\Console\Command\Command');
+    }
 }

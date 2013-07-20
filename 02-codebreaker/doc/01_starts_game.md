@@ -128,3 +128,12 @@ First method done, lets move to the second one `getDefaultCommands`. But wait a 
 
     bin/phpspec desc Aleherse/Codebreaker/CodebreakerCommand
     bin/phpspec run
+
+The next step is make our class to be a console command so we need to add this method to the `CodebreakerCommandSpec` file
+
+    function it_should_be_a_console_command()
+    {
+        $this->shouldBeAnInstanceOf('Symfony\Component\Console\Command\Command');
+    }
+
+If we run phpspec we find a failing example
