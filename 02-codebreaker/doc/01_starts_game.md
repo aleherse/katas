@@ -144,4 +144,18 @@ If we run phpspec we find a failing example. To make the example pass we need to
 	{
 	}
 
-But instead of a passing example we get a broken specification
+But instead of a passing example we get a broken specification, this is because a command needs a name so lets set the name in the configure method.
+
+    protected function configure()
+    {
+        $this->setName('codebreaker');
+    }
+
+To test the command name is the correct one we can add this method to the specification file
+
+    function it_should_have_codebreaker_as_it_name()
+    {
+        $this->getName()->shouldReturn('codebreaker');
+    }
+
+So finally we have codebreaker command created

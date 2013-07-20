@@ -16,4 +16,9 @@ class CodebreakerCommandSpec extends ObjectBehavior
     {
         $this->shouldBeAnInstanceOf('Symfony\Component\Console\Command\Command');
     }
+
+    function it_should_have_codebreaker_as_it_name()
+    {
+        $this->getName()->shouldReturn('codebreaker');
+    }
 }
