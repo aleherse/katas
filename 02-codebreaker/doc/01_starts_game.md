@@ -123,3 +123,8 @@ If we change the getCommandName method to this we will find a passing example
     {
         return 'codebreaker';
     }
+
+First method done, lets move to the second one `getDefaultCommands`. But wait a minute because this is the wrong way of making things, that method is protected and the thing we really need is that codebreaker command is added to the application so lets first create the command specification and class.
+
+    bin/phpspec desc Aleherse/Codebreaker/CodebreakerCommand
+    bin/phpspec run
