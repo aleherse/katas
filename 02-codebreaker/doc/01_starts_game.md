@@ -213,3 +213,15 @@ Following all this steps we have created an application with a single command bu
     $app->run();
 
 Now if we run `./codebreaker` we can play the game
+
+This time we encounter a logic exception when we execute the game, this is because the method `execute` in a command has to be overriden in `CodebreakerCommand` class, so the behaviour we need to add to `CodebreakerCommandSpec` is to not throw that exception when the execute method is called
+
+    use Symfony\Component\Console\Input\InputInterface;
+    use Symfony\Component\Console\Output\OutputInterface;
+
+    function it_should_not_throw_a_logic_exception_when_the_command_is_executed(InputInterface $input, OutputInterface $output)
+    {
+        $this->shouldNotThrow(new \LogicException('You must override the execute() method in the concrete command class.'))->duringRun($input, $output);
+    }
+
+And as always first we find a failing example
