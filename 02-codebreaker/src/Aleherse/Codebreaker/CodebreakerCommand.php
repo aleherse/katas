@@ -2,6 +2,8 @@
 
 namespace Aleherse\Codebreaker;
 
-class CodebreakerCommand
+use Symfony\Component\Console\Command\Command;
+
+class CodebreakerCommand extends Command
 {
 }
