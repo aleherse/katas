@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "1e2679e7ed0ab09ac58853d94a236b42",
+    "hash": "7ebbc3406897ca9236f9b167034f1796",
     "packages": [
         {
             "name": "behat/behat",
@@ -339,17 +339,17 @@
         },
         {
             "name": "symfony/console",
-            "version": "v2.3.2",
+            "version": "dev-master",
             "target-dir": "Symfony/Component/Console",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console.git",
-                "reference": "v2.3.2"
+                "reference": "c374f12670a4e6b6b72ef2a2d58b75534d94609c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/v2.3.2",
-                "reference": "v2.3.2",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/c374f12670a4e6b6b72ef2a2d58b75534d94609c",
+                "reference": "c374f12670a4e6b6b72ef2a2d58b75534d94609c",
                 "shasum": ""
             },
             "require": {
@@ -364,7 +364,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3-dev"
+                    "dev-master": "2.4-dev"
                 }
             },
             "autoload": {
@@ -388,7 +388,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "http://symfony.com",
-            "time": "2013-07-11 19:36:36"
+            "time": "2013-07-11 19:37:15"
         },
         {
             "name": "symfony/dependency-injection",
@@ -706,7 +706,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "behat/behat": 0,
-        "phpspec/phpspec": 20
+        "phpspec/phpspec": 20,
+        "symfony/console": 20
     },
     "platform": [
 

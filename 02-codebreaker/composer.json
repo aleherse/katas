@@ -1,7 +1,8 @@
 {
     "require": {
         "behat/behat": "2.4.*@stable",
-        "phpspec/phpspec": "2.0.*@dev"
+        "phpspec/phpspec": "2.0.*@dev",
+        "symfony/console": "2.4.*@dev"
     },
 
     "config": {
