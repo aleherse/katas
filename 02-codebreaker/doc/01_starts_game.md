@@ -50,4 +50,11 @@ Executing the next line we check all the specification files, the first time exe
 
     bin/phpspec run
 
-Next time executing the previous command we see a green bar.
+Next time executing the previous command we see a green bar. Now we need to make our class to be a console application, to accomplish that we add the next method to the specification file
+
+    function it_should_be_a_console_application()
+    {
+        $this->shouldBeAnInstanceOf('Symfony\Component\Console\Application');
+    }
+
+If we run phpspec now we find a failing example.

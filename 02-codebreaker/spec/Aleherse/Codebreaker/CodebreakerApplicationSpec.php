@@ -11,4 +11,9 @@ class CodebreakerApplicationSpec extends ObjectBehavior
     {
         $this->shouldHaveType('Aleherse\Codebreaker\CodebreakerApplication');
     }
+
+    function it_should_be_a_console_application()
+    {
+        $this->shouldBeAnInstanceOf('Symfony\Component\Console\Application');
+    }
 }
