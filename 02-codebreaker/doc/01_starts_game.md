@@ -103,3 +103,14 @@ It's time to add the logic that we need for the method `iShouldSee`
     }
 
 If we run Behat again we find one failing step so it is time to specify the behaviour of the application.
+
+We don't want to pass any argument to the codebreaker command so we need to create a console application with one default command, to accomplish this we can follow this [cookbook](http://symfony.com/doc/current/components/console/single_command_tool.html) entry. But before copy and paste the code we need to specify the changes in the command class behaviour to accomplish that, so lets start adding this method to the `CodebreakerApplicationSpec` file
+
+    use Symfony\Component\Console\Input\InputInterface;
+
+    function it_should_return_codebreaker_as_command_name(InputInterface $input)
+    {
+        $this->getCommandName($input)->shouldReturn('codebreaker');
+    }
+
+Running phpspec now it will ask us to create the `getCommandName` method, answer yes. Now if we execute phpspec again we end with a failing example.
