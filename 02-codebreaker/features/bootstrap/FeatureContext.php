@@ -21,6 +21,9 @@ use Aleherse\Codebreaker\CodebreakerApplication;
  */
 class FeatureContext extends BehatContext
 {
+    /** @var  ApplicationTester $applicationTester */
+    protected $applicationTester;
+
     /**
      * Initializes context.
      * Every scenario gets it's own context object.
@@ -48,9 +51,9 @@ class FeatureContext extends BehatContext
         $application = new CodebreakerApplication();
         $application->setAutoExit(false);
 
-        $applicationTester = new ApplicationTester($application);
+        $this->applicationTester = new ApplicationTester($application);
 
-        $returnValue = $applicationTester->run([]);
+        $returnValue = $this->applicationTester->run([]);
 
         if ($returnValue > 0) {
             throw new Exception('Codebreaker returned an unexpected value while starting a new game');

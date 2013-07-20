@@ -66,3 +66,27 @@ If we run phpspec now we find a failing example. To change it into a passing exa
     }
 
 And now if we run behat we can check that the `I start a new game` step is passing.
+
+Two steps down, lets go for the third one `I should see "Welcome to Codebreaker!"` the phrase "Welcome to Codebreaker!" is between
+quotation mark because Behat is going to consider it as an argument for the `iShouldSee` method, but before anything we need to refactor
+the `FeatureContext` class because we need to access to the `applicationTester` object from the `iShouldSee` method
+
+    /** @var  ApplicationTester $applicationTester */
+    protected $applicationTester;
+
+    public function iStartANewGame()
+    {
+        /** @var CodebreakerApplication $application */
+        $application = new CodebreakerApplication();
+        $application->setAutoExit(false);
+
+        $this->applicationTester = new ApplicationTester($application);
+
+        $returnValue = $this->applicationTester->run([]);
+
+        if ($returnValue > 0) {
+            throw new Exception('Codebreaker returned an unexpected value while starting a new game');
+        }
+    }
+
+If we run behat and phpspec we can check that we haven't introduce any error and the steps and examples are still passing
