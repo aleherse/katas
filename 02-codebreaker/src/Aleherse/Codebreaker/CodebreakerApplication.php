@@ -2,6 +2,8 @@
 
 namespace Aleherse\Codebreaker;
 
-class CodebreakerApplication
+use Symfony\Component\Console\Application;
+
+class CodebreakerApplication extends Application
 {
 }

@@ -57,4 +57,12 @@ Next time executing the previous command we see a green bar. Now we need to make
         $this->shouldBeAnInstanceOf('Symfony\Component\Console\Application');
     }
 
-If we run phpspec now we find a failing example.
+If we run phpspec now we find a failing example. To change it into a passing example we need to make `CodebreakerApplication` extend the `Application` class.
+
+    use Symfony\Component\Console\Application;
+
+    class CodebreakerApplication extends Application
+    {
+    }
+
+And now if we run behat we can check that the `I start a new game` step is passing.
