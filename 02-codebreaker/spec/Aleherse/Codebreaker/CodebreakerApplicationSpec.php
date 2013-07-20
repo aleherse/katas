@@ -4,6 +4,7 @@ namespace spec\Aleherse\Codebreaker;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
 
 class CodebreakerApplicationSpec extends ObjectBehavior
@@ -26,5 +27,13 @@ class CodebreakerApplicationSpec extends ObjectBehavior
     function it_should_have_codebreaker_command_as_one_of_the_available_commands()
     {
         $this->get('codebreaker')->shouldReturnAnInstanceOf('Aleherse\Codebreaker\CodebreakerCommand');
+    }
+
+    function it_should_avoid_expecting_a_command_name(InputDefinition $definition)
+    {
+        $definition->setArguments()->shouldBeCalledTimes(1);
+
+        $this->setDefinition($definition);
+        $this->getDefinition();
     }
 }

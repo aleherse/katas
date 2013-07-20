@@ -177,3 +177,17 @@ And now we only need to add the `getDefaultCommands` method to make this example
 
         return $defaultCommands;
     }
+
+To finish our single command application we need to avoid expecting a command name, the way to do that is clear out the normal first argument and to accomplish that we need to be sure the method `setArguments` of the `InputDefinition` class is called inside the `getDefinition` method. So this is calling for a Mock! the method to achieve this is the next one
+
+    use Symfony\Component\Console\Input\InputDefinition;
+
+    function it_should_avoid_expecting_a_command_name(InputDefinition $definition)
+    {
+        $definition->setArguments()->shouldBeCalledTimes(1);
+
+        $this->setDefinition($definition);
+        $this->getDefinition();
+    }
+
+Again we have a failing example
