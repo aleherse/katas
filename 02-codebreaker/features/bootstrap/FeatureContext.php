@@ -24,6 +24,9 @@ class FeatureContext extends BehatContext
     /** @var  ApplicationTester $applicationTester */
     protected $applicationTester;
 
+    /** @var  string[] $display */
+    protected $display = null;
+
     /**
      * Initializes context.
      * Every scenario gets it's own context object.
@@ -60,15 +63,23 @@ class FeatureContext extends BehatContext
         }
     }
 
+    protected function getDisplayLine()
+    {
+        if (null === $this->display) {
+            $this->display = explode("\n",$this->applicationTester->getDisplay());
+        }
+
+        return array_shift($this->display);
+    }
+
     /**
      * @Then /^I should see "([^"]*)"$/
      */
     public function iShouldSee($message)
     {
-        $display = $this->applicationTester->getDisplay();
-
-        if ($display != $message) {
-            throw new Exception(sprintf('Expected message %s but got %s', $message, $display));
+        $displayLine = $this->getDisplayLine();
+        if ($displayLine != $message) {
+            throw new Exception(sprintf('Expected message %s but got %s', $message, $displayLine));
         }
     }
 

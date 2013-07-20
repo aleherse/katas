@@ -243,3 +243,37 @@ If we test our command again `./codebreaker` now is working without any error me
 If we run behat again the step is passing
 
     bin/behat features/code-breaker_starts_game.feature
+
+And doing something similar for the step `I should see "Enter guess:"` we should make it pass easily
+
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $output->write('Welcome to Codebreaker!');
+        $output->write('Enter guess:');
+    }
+
+But instead of having a passing step we find that the previous step is failing, so we need to undo the changes and think about what has happened.
+
+The reason is that it's refactor time! because the welcome message should be in its own line, we can accomplish this changing `write` for `writeln` but the step would be failing again, so we need to refactor the way we check the display before, lets go to the `FeatureContext` class and create a `getDisplayLine` method
+
+    /** @var  string[] $display */
+    protected $display = null;
+
+    protected function getDisplayLine()
+    {
+        if (null === $this->display) {
+            $this->display = explode("\n",$this->applicationTester->getDisplay());
+        }
+
+        return array_shift($this->display);
+    }
+
+    public function iShouldSee($message)
+    {
+        $displayLine = $this->getDisplayLine();
+        if ($displayLine != $message) {
+            throw new Exception(sprintf('Expected message %s but got %s', $message, $displayLine));
+        }
+    }
+
+If we run behat again we can see that `I should see "Welcome to Codebreaker!"` is still passing, good sign the refactor didn't break anything.
