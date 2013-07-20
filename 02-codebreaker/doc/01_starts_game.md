@@ -114,3 +114,12 @@ We don't want to pass any argument to the codebreaker command so we need to crea
     }
 
 Running phpspec now it will ask us to create the `getCommandName` method, answer yes. Now if we execute phpspec again we end with a failing example.
+
+If we change the getCommandName method to this we will find a passing example
+
+    use Symfony\Component\Console\Input\InputInterface;
+
+    public function getCommandName(InputInterface $input)
+    {
+        return 'codebreaker';
+    }

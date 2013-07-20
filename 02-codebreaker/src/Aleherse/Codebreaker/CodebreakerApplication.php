@@ -3,12 +3,13 @@
 namespace Aleherse\Codebreaker;
 
 use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Input\InputInterface;
 
 class CodebreakerApplication extends Application
 {
 
-    public function getCommandName($argument1)
+    public function getCommandName(InputInterface $input)
     {
-        // TODO: write logic here
+        return 'codebreaker';
     }
 }
