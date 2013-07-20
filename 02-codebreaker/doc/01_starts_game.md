@@ -159,3 +159,10 @@ To test the command name is the correct one we can add this method to the specif
     }
 
 So finally we have codebreaker command created
+
+It's time to go back to `CodebreakerApplication`, if we read the cookbook entry about a single command application the next thing we need to do is to add the `getDefaultCommands` method, but that method is protected. So wait a minute, this is not unit testing we are focused in the behaviour and the expected behaviour is to have `CodebreakerCommand` amongs the available commands of the application. So this is the method we need in `CodebreakerApplicationSpec`
+
+    function it_should_have_codebreaker_command_as_one_of_the_available_commands()
+    {
+        $this->get('codebreaker')->shouldReturnAnInstanceOf('Aleherse\Codebreaker\CodebreakerCommand');
+    }

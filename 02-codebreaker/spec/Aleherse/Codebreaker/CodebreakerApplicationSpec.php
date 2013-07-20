@@ -22,4 +22,9 @@ class CodebreakerApplicationSpec extends ObjectBehavior
     {
         $this->getCommandName($input)->shouldReturn('codebreaker');
     }
+
+    function it_should_have_codebreaker_command_as_one_of_the_available_commands()
+    {
+        $this->get('codebreaker')->shouldReturnAnInstanceOf('Aleherse\Codebreaker\CodebreakerCommand');
+    }
 }
