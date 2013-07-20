@@ -190,4 +190,13 @@ To finish our single command application we need to avoid expecting a command na
         $this->getDefinition();
     }
 
-Again we have a failing example
+Again we have a failing example and adding this method to `CodebreakerApplication` we turn it into green
+
+    public function getDefinition()
+    {
+        $inputDefinition = parent::getDefinition();
+
+        $inputDefinition->setArguments();
+
+        return $inputDefinition;
+    }

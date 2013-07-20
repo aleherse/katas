@@ -21,4 +21,13 @@ class CodebreakerApplication extends Application
 
         return $defaultCommands;
     }
+
+    public function getDefinition()
+    {
+        $inputDefinition = parent::getDefinition();
+
+        $inputDefinition->setArguments();
+
+        return $inputDefinition;
+    }
 }
