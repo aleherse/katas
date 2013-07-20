@@ -6,6 +6,8 @@ use Behat\Behat\Context\ClosuredContextInterface,
     Behat\Behat\Exception\PendingException;
 use Behat\Gherkin\Node\PyStringNode,
     Behat\Gherkin\Node\TableNode;
+use Symfony\Component\Console\Tester\ApplicationTester;
+use Aleherse\Codebreaker\CodebreakerApplication;
 
 //
 // Require 3rd-party libraries here:
@@ -42,7 +44,17 @@ class FeatureContext extends BehatContext
      */
     public function iStartANewGame()
     {
-        throw new PendingException();
+        /** @var CodebreakerApplication $application */
+        $application = new CodebreakerApplication();
+        $application->setAutoExit(false);
+
+        $applicationTester = new ApplicationTester($application);
+
+        $returnValue = $applicationTester->run([]);
+
+        if ($returnValue > 0) {
+            throw new Exception('Codebreaker returned an unexpected value while starting a new game');
+        }
     }
 
     /**

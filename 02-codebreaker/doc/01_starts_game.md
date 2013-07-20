@@ -21,3 +21,25 @@ So we need to add the next line to the requiere section of the `composer.json` f
 and update composer
 
     composer update
+
+This step should create an instance of `CodebreakerApplication` class and starts a game so we'll remove the exception and add some code to the `iStartANewGame()` method in the `FeatureContext.php` file.
+
+	use Symfony\Component\Console\Tester\ApplicationTester;
+	use Aleherse\Codebreaker\CodebreakerApplication;
+
+    public function iStartANewGame()
+    {
+		/** @var CodebreakerApplication $application */
+		$application = new CodebreakerApplication();
+		$application->setAutoExit(false);
+
+		$applicationTester = new ApplicationTester($application);
+
+		$returnValue = $applicationTester->run([]);
+
+		if ($returnValue > 0) {
+			throw new Exception('Codebreaker returned an unexpected value while starting a new game');
+		}
+    }
+
+If we execute behat we see a fatal error
