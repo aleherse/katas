@@ -90,3 +90,16 @@ the `FeatureContext` class because we need to access to the `applicationTester` 
     }
 
 If we run behat and phpspec we can check that we haven't introduce any error and the steps and examples are still passing
+
+It's time to add the logic that we need for the method `iShouldSee`
+
+    public function iShouldSee($message)
+    {
+        $display = $this->applicationTester->getDisplay();
+
+        if ($display != $message) {
+            throw new Exception(sprintf('Expected message %s but got %s', $message, $display));
+        }
+    }
+
+If we run Behat again we find one failing step so it is time to specify the behaviour of the application.

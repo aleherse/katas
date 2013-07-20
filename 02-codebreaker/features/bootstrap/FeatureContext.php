@@ -63,9 +63,13 @@ class FeatureContext extends BehatContext
     /**
      * @Then /^I should see "([^"]*)"$/
      */
-    public function iShouldSee($arg1)
+    public function iShouldSee($message)
     {
-        throw new PendingException();
+        $display = $this->applicationTester->getDisplay();
+
+        if ($display != $message) {
+            throw new Exception(sprintf('Expected message %s but got %s', $message, $display));
+        }
     }
 
     /**
