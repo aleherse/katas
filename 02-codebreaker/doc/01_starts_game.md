@@ -232,3 +232,14 @@ And as always first we find a failing example and if we override the execute met
     protected function execute(InputInterface $input, OutputInterface $output)
     {
     }
+
+If we test our command again `./codebreaker` now is working without any error message but the behat step `I should see "Welcome to Codebreaker!"` is still failing so lets make the command return the desired message, it's time to modify the `execute` method in `CodebreakerCommand` class
+
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $output->write('Welcome to Codebreaker!');
+    }
+
+If we run behat again the step is passing
+
+    bin/behat features/code-breaker_starts_game.feature
