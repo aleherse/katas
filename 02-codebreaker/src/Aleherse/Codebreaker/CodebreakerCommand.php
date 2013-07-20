@@ -15,6 +15,7 @@ class CodebreakerCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->write('Welcome to Codebreaker!');
+        $output->writeln('Welcome to Codebreaker!');
+        $output->write('Enter guess:');
     }
 }

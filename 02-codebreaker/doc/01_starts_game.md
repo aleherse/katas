@@ -277,3 +277,13 @@ The reason is that it's refactor time! because the welcome message should be in 
     }
 
 If we run behat again we can see that `I should see "Welcome to Codebreaker!"` is still passing, good sign the refactor didn't break anything.
+
+Now if we modify the `execute` method in `CodebreakerCommand` class both steps will pass
+
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $output->writeln('Welcome to Codebreaker!');
+        $output->write('Enter guess:');
+    }
+
+The first feature is finished!
