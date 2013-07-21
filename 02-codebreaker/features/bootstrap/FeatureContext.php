@@ -31,6 +31,8 @@ class FeatureContext extends BehatContext
     /** @var  string[] $display */
     protected $display = [];
 
+    protected $mark;
+
     /**
      * Initializes context.
      * Every scenario gets it's own context object.
@@ -101,7 +103,7 @@ class FeatureContext extends BehatContext
      */
     public function iGuess($guess)
     {
-        $this->command->guess($guess);
+        $this->mark = $this->command->guess($guess);
     }
 
     /**

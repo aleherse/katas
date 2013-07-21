@@ -65,3 +65,16 @@ And like with the previous one we encounter a fatal error so it's time to change
 Like before running phpspec two times will create the `guess` method and as different from the previous step this time the example is passing without adding any code and also the second step in behat is passing
 
 Maybe this situation looks weird at first because the step is passing but we didn't actually add any code, but it's ok that was the intended behaviour
+
+So lets move to the third step `the mark should be "<mark>"` and everything will make sense.
+
+In this step we need to check the mark and the mark depends on the guess so the expected behaviour is that the method `guess` should return the calculated mark, so we need to refactor the `iGuess` method in `FeatureContext` class
+
+    protected $mark;
+
+    public function iGuess($guess)
+    {
+        $this->mark = $this->command->guess($guess);
+    }
+
+Executing behat and phpspec we'll see that everything is working as before so we didn't introduce any error, great
