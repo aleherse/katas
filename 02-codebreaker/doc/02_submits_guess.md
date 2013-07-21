@@ -88,4 +88,16 @@ Thanks to the refactor now we can check the returned mark in the `theMarkShouldB
         }
     }
 
-If we run behat we have 14 failing scenarios because of this third step
+If we run behat we have 14 failing scenarios because of this third step, so lets move again to phpspec
+
+But now this is not a trivial example because depending on the guess we have different resulting marks and of course different scenarios to choose, so the best practice here is going to the easiest scenario
+
+In this case it is the no matches scenario so the expected behaviour is that `guess` should return an empty mark with no matches and this is the example
+
+    function it_returns_an_empty_mark_with_a_guess_with_no_matches()
+    {
+        $this->setSecret('1234');
+        $this->guess('5555')->shouldReturn('');
+    }
+
+As expected the example is failing

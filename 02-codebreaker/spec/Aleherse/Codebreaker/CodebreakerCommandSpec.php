@@ -39,4 +39,10 @@ class CodebreakerCommandSpec extends ObjectBehavior
     {
         $this->guess('5555');
     }
+
+    function it_returns_an_empty_mark_with_a_guess_with_no_matches()
+    {
+        $this->setSecret('1234');
+        $this->guess('5555')->shouldReturn('');
+    }
 }
