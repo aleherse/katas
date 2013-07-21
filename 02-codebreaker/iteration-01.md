@@ -46,3 +46,4 @@ What have happened is that behat have created one method for each step in the fe
 The followed steps for each feature can be read on these files inside the doc folder
 
  * [Code-breaker starts game](https://github.com/aleherse/katas-BDD/tree/master/02-codebreaker/doc/01_starts_game.md)
+ * [Code-breaker submits guess](https://github.com/aleherse/katas-BDD/tree/master/02-codebreaker/doc/02_submits_guess.md)

@@ -7,7 +7,8 @@ use Behat\Behat\Context\ClosuredContextInterface,
 use Behat\Gherkin\Node\PyStringNode,
     Behat\Gherkin\Node\TableNode;
 use Symfony\Component\Console\Tester\ApplicationTester;
-use Aleherse\Codebreaker\CodebreakerApplication;
+use Aleherse\Codebreaker\CodebreakerApplication,
+    Aleherse\Codebreaker\CodebreakerCommand;
 
 //
 // Require 3rd-party libraries here:
@@ -24,8 +25,11 @@ class FeatureContext extends BehatContext
     /** @var  ApplicationTester $applicationTester */
     protected $applicationTester;
 
+    /** @var CodebreakerCommand $command */
+    protected $command;
+
     /** @var  string[] $display */
-    protected $display = null;
+    protected $display = [];
 
     /**
      * Initializes context.
@@ -86,9 +90,10 @@ class FeatureContext extends BehatContext
     /**
      * @Given /^the secret code is "([^"]*)"$/
      */
-    public function theSecretCodeIs($arg1)
+    public function theSecretCodeIs($secret)
     {
-        throw new PendingException();
+        $this->command = (new CodebreakerCommand())
+            ->setSecret($secret);
     }
 
     /**
