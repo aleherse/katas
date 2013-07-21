@@ -28,4 +28,10 @@ class CodebreakerCommandSpec extends ObjectBehavior
     {
         $this->shouldNotThrow(new \LogicException('You must override the execute() method in the concrete command class.'))->duringRun($input, $output);
     }
+
+    function it_should_set_a_secret()
+    {
+        $this->setSecret('1234');
+        $this->getSecret()->shouldReturn('1234');
+    }
 }

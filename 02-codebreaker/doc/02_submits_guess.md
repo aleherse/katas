@@ -17,3 +17,15 @@ Now that we understand the feature file it's time to face the first step `the se
 If we run behat we will find a fatal error becouse `setSecret` method is undefined but that is the expected outcome, we will define it later using phpspec
 
     bin/behat features/code-breaker_submits_guess.feature
+
+For the next step we need to change to phpspec and create the behaviour the command should set a secret inside the `CodebreakerCommandSpec` class
+
+    function it_should_set_a_secret()
+    {
+        $this->setSecret('1234');
+        $this->getSecret()->shouldReturn('1234');
+    }
+
+Now if we run phpspec several time it will create the method `setSecret` and `getSecret` and finally we will have a failing example
+
+    bin/phpspec run spec/Aleherse/Codebreaker/CodebreakerCommandSpec.php

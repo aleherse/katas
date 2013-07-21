@@ -18,4 +18,14 @@ class CodebreakerCommand extends Command
         $output->writeln('Welcome to Codebreaker!');
         $output->write('Enter guess:');
     }
+
+    public function setSecret($argument1)
+    {
+        // TODO: write logic here
+    }
+
+    public function getSecret()
+    {
+        // TODO: write logic here
+    }
 }
