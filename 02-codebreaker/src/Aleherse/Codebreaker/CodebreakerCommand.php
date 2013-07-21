@@ -8,6 +8,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class CodebreakerCommand extends Command
 {
+    protected $secret = '0000';
+
     protected function configure()
     {
         $this->setName('codebreaker');
@@ -19,13 +21,15 @@ class CodebreakerCommand extends Command
         $output->write('Enter guess:');
     }
 
-    public function setSecret($argument1)
+    public function setSecret($secret)
     {
-        // TODO: write logic here
+        $this->secret = $secret;
+
+        return $this;
     }
 
     public function getSecret()
     {
-        // TODO: write logic here
+        return $this->secret;
     }
 }

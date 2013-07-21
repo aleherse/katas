@@ -29,3 +29,21 @@ For the next step we need to change to phpspec and create the behaviour the comm
 Now if we run phpspec several time it will create the method `setSecret` and `getSecret` and finally we will have a failing example
 
     bin/phpspec run spec/Aleherse/Codebreaker/CodebreakerCommandSpec.php
+
+And making this example pass is as easy is add these lines to the `CodebreakerCommand` class
+
+    protected $secret = '0000';
+
+    public function setSecret($secret)
+    {
+        $this->secret = $secret;
+
+        return $this;
+    }
+
+    public function getSecret()
+    {
+        return $this->secret;
+    }
+
+If we run phpspec now the example is passing but also if we run behat we find that 14 steps are passing, this is because the first step is also the first in the 14 scenarios
