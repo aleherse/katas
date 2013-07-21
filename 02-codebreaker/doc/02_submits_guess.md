@@ -55,4 +55,13 @@ First step done, lets move to the second one `I guess "<guess>"`, the code we ne
         $this->command->guess($guess);
     }
 
-And like with the previous one we encounter a fatal error so it's time to change to phpspec again
+And like with the previous one we encounter a fatal error so it's time to change to phpspec again and add this behaviour to the `CodebreakerCommand`
+
+    function it_should_receive_a_guess()
+    {
+        $this->guess('5555');
+    }
+
+Like before running phpspec two times will create the `guess` method and as different from the previous step this time the example is passing without adding any code and also the second step in behat is passing
+
+Maybe this situation looks weird at first because the step is passing but we didn't actually add any code, but it's ok that was the intended behaviour

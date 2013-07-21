@@ -32,4 +32,9 @@ class CodebreakerCommand extends Command
     {
         return $this->secret;
     }
+
+    public function guess($argument1)
+    {
+        // TODO: write logic here
+    }
 }

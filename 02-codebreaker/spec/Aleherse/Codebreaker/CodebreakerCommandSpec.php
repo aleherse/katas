@@ -34,4 +34,9 @@ class CodebreakerCommandSpec extends ObjectBehavior
         $this->setSecret('1234');
         $this->getSecret()->shouldReturn('1234');
     }
+
+    function it_should_receive_a_guess()
+    {
+        $this->guess('5555');
+    }
 }
