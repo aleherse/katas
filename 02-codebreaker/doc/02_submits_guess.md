@@ -78,3 +78,14 @@ In this step we need to check the mark and the mark depends on the guess so the 
     }
 
 Executing behat and phpspec we'll see that everything is working as before so we didn't introduce any error, great
+
+Thanks to the refactor now we can check the returned mark in the `theMarkShouldBe` method and the code to do that is
+
+    public function theMarkShouldBe($mark)
+    {
+        if($mark !== $this->mark) {
+            throw new Exception(sprintf('Expected mark %s but got %s', $mark, $this->mark));
+        }
+    }
+
+If we run behat we have 14 failing scenarios because of this third step

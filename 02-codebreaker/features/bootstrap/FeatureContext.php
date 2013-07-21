@@ -109,8 +109,10 @@ class FeatureContext extends BehatContext
     /**
      * @Then /^the mark should be "([^"]*)"$/
      */
-    public function theMarkShouldBe($arg1)
+    public function theMarkShouldBe($mark)
     {
-        throw new PendingException();
+        if($mark !== $this->mark) {
+            throw new Exception(sprintf('Expected mark %s but got %s', $mark, $this->mark));
+        }
     }
 }
