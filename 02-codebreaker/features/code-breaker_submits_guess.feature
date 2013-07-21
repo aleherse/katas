@@ -6,23 +6,27 @@ Feature: code-breaker submits guess
   For each number in the guess that matches the number and position of a number in the secret code, the mark includes one + sign
   For each number in the guess that matches the number but not the position of a number in the secret code, the mark includes one - sign
 
-Background:
+Scenario Outline: no matches
   Given the secret code is "<code>"
   When I guess "<guess>"
   Then the mark should be "<mark>"
-
-Scenario Outline: no matches
   Examples:
     | code | guess | mark |
     | 1234 | 5555  |      |
 
 Scenario Outline: 1 number correct
+  Given the secret code is "<code>"
+  When I guess "<guess>"
+  Then the mark should be "<mark>"
   Examples:
     | code | guess | mark |
     | 1234 | 1555  | +    |
     | 1234 | 2555  | -    |
 
 Scenario Outline: 2 numbers correct
+  Given the secret code is "<code>"
+  When I guess "<guess>"
+  Then the mark should be "<mark>"
   Examples:
     | code | guess | mark |
     | 1234 | 5254  | ++   |
@@ -30,6 +34,9 @@ Scenario Outline: 2 numbers correct
     | 1234 | 2545  | --   |
 
 Scenario Outline: 3 numbers correct
+  Given the secret code is "<code>"
+  When I guess "<guess>"
+  Then the mark should be "<mark>"
   Examples:
     | code | guess | mark |
     | 1234 | 5234  | +++  |
@@ -38,6 +45,9 @@ Scenario Outline: 3 numbers correct
     | 1234 | 5123  | ---  |
 
 Scenario Outline: all numbers correct
+  Given the secret code is "<code>"
+  When I guess "<guess>"
+  Then the mark should be "<mark>"
   Examples:
     | code | guess | mark |
     | 1234 | 1234  | ++++ |
