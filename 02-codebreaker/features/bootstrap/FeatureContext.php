@@ -99,9 +99,9 @@ class FeatureContext extends BehatContext
     /**
      * @When /^I guess "([^"]*)"$/
      */
-    public function iGuess($arg1)
+    public function iGuess($guess)
     {
-        throw new PendingException();
+        $this->command->guess($guess);
     }
 
     /**

@@ -47,3 +47,12 @@ And making this example pass is as easy is add these lines to the `CodebreakerCo
     }
 
 If we run phpspec now the example is passing but also if we run behat we find that 14 steps are passing, this is because the first step is also the first in the 14 scenarios
+
+First step done, lets move to the second one `I guess "<guess>"`, the code we need to add is very simple
+
+    public function iGuess($guess)
+    {
+        $this->command->guess($guess);
+    }
+
+And like with the previous one we encounter a fatal error so it's time to change to phpspec again
