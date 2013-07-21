@@ -100,4 +100,11 @@ In this case it is the no matches scenario so the expected behaviour is that `gu
         $this->guess('5555')->shouldReturn('');
     }
 
-As expected the example is failing
+As expected the example is failing, to make it pass we only need to return an empty string in the `guess` method of `CodebreakerCommand`
+
+    public function guess($guess)
+    {
+        return '';
+    }
+
+So now 1 scenario out of 14 is working

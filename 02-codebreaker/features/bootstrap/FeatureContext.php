@@ -111,7 +111,7 @@ class FeatureContext extends BehatContext
      */
     public function theMarkShouldBe($mark)
     {
-        if($mark !== $this->mark) {
+        if($mark != $this->mark) {
             throw new Exception(sprintf('Expected mark %s but got %s', $mark, $this->mark));
         }
     }

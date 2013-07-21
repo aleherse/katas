@@ -33,8 +33,8 @@ class CodebreakerCommand extends Command
         return $this->secret;
     }
 
-    public function guess($argument1)
+    public function guess($guess)
     {
-        // TODO: write logic here
+        return '';
     }
 }
