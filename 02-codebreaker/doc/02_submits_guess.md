@@ -156,3 +156,30 @@ The modification of the `guess` method to make the example pass is the next one 
 
         return $mark;
     }
+
+We are on fire but before moving to another scenario it's time to refactor our code a bit because the method `guess` is getting bigger so lets rewrite it to this
+
+    public function guess($guess)
+    {
+        $mark = '';
+
+        if ($this->exactMatch($guess, 0)) {
+            $mark .= '+';
+        } elseif ($this->numberMatch($guess, 0)) {
+            $mark .= '-';
+        }
+
+        return $mark;
+    }
+
+    protected function exactMatch($guess, $index)
+    {
+        return $this->getSecret()[$index] == $guess[$index];
+    }
+
+    protected function numberMatch($guess, $index)
+    {
+        return false !== strpos($this->getSecret(), $guess[$index]);
+    }
+
+Now the intention behind the `guess` method is really clear reading the actual code and also the scenarios and examples are working as before

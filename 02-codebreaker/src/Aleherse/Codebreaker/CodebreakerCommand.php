@@ -37,12 +37,22 @@ class CodebreakerCommand extends Command
     {
         $mark = '';
 
-        if (0 === strpos($this->getSecret(), $guess[0]) ) {
+        if ($this->exactMatch($guess, 0)) {
             $mark .= '+';
-        } else if (0 < strpos($this->getSecret(), $guess[0]) ) {
+        } elseif ($this->numberMatch($guess, 0)) {
             $mark .= '-';
         }
 
         return $mark;
+    }
+
+    protected function exactMatch($guess, $index)
+    {
+        return $this->getSecret()[$index] == $guess[$index];
+    }
+
+    protected function numberMatch($guess, $index)
+    {
+        return false !== strpos($this->getSecret(), $guess[$index]);
     }
 }
