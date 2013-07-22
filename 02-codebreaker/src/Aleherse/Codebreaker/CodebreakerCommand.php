@@ -40,7 +40,11 @@ class CodebreakerCommand extends Command
         for ($i = 0; $i < 4; $i++) {
             if ($this->exactMatch($guess, $i)) {
                 $mark .= '+';
-            } elseif ($this->numberMatch($guess, $i)) {
+            }
+        }
+
+        for ($i = 0; $i < 4; $i++) {
+            if ($this->numberMatch($guess, $i)) {
                 $mark .= '-';
             }
         }
@@ -55,6 +59,8 @@ class CodebreakerCommand extends Command
 
     protected function numberMatch($guess, $index)
     {
-        return false !== strpos($this->getSecret(), $guess[$index]);
+        $pos = strpos($this->getSecret(), $guess[$index]);
+
+        return false !== $pos && $pos != $index;
     }
 }

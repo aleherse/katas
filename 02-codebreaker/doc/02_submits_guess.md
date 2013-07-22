@@ -218,3 +218,35 @@ It is time to see why we have three failing scenarios left, if we read the error
         $this->setSecret('1234');
         $this->guess('2535')->shouldReturn('+-');
     }
+
+We can make this example pass checking for the exact match before and then for the number match and concatenate the results
+
+    public function guess($guess)
+    {
+        $mark = '';
+
+        for ($i = 0; $i < 4; $i++) {
+            if ($this->exactMatch($guess, $i)) {
+                $mark .= '+';
+            }
+        }
+
+        for ($i = 0; $i < 4; $i++) {
+            if ($this->numberMatch($guess, $i)) {
+                $mark .= '-';
+            }
+        }
+
+        return $mark;
+    }
+
+But the example is still failing and also now we have go down to 5 scenario out of 14. So lets see what is happening The error message is `expected "+-", but got "+--"`, we now realize that the problem is that an exact match is also counted as a number match so we need to rewrite the `numberMatch` method to not return a mark if it is also an exact match
+
+    protected function numberMatch($guess, $index)
+    {
+        $pos = strpos($this->getSecret(), $guess[$index]);
+
+        return false !== $pos && $pos != $index;
+    }
+
+Great now all the examples and scenarios are passing!

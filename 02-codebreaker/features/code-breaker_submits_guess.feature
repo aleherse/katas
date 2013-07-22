@@ -52,5 +52,5 @@ Scenario Outline: all numbers correct
     | code | guess | mark |
     | 1234 | 1234  | ++++ |
     | 1234 | 1243  | ++-- |
-    | 1234 | 1432  | +--- |
+    | 1234 | 1423  | +--- |
     | 1234 | 4321  | ---- |
