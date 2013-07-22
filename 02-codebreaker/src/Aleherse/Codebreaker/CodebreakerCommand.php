@@ -35,21 +35,22 @@ class CodebreakerCommand extends Command
 
     public function guess($guess)
     {
-        $mark = '';
+        $exactMatchCount = 0;
+        $numberMatchCount = 0;
 
         for ($i = 0; $i < 4; $i++) {
             if ($this->exactMatch($guess, $i)) {
-                $mark .= '+';
+                $exactMatchCount++;
             }
         }
 
         for ($i = 0; $i < 4; $i++) {
             if ($this->numberMatch($guess, $i)) {
-                $mark .= '-';
+                $numberMatchCount++;
             }
         }
 
-        return $mark;
+        return str_repeat('+', $exactMatchCount) . str_repeat('-', $numberMatchCount);
     }
 
     protected function exactMatch($guess, $index)

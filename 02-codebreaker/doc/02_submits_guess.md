@@ -250,3 +250,27 @@ But the example is still failing and also now we have go down to 5 scenario out 
     }
 
 Great now all the examples and scenarios are passing!
+
+Now we can refactor several times and after each modification run behat and phpspec the check if everything is working as expected
+
+The first refactor we can do is clarify the nature of the guess method
+
+    public function guess($guess)
+    {
+        $exactMatchCount = 0;
+        $numberMatchCount = 0;
+
+        for ($i = 0; $i < 4; $i++) {
+            if ($this->exactMatch($guess, $i)) {
+                $exactMatchCount++;
+            }
+        }
+
+        for ($i = 0; $i < 4; $i++) {
+            if ($this->numberMatch($guess, $i)) {
+                $numberMatchCount++;
+            }
+        }
+
+        return str_repeat('+', $exactMatchCount) . str_repeat('-', $numberMatchCount);
+    }
