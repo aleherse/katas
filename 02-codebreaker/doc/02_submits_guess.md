@@ -141,3 +141,18 @@ It's time to move to the behaviour when we find an exact match and then test tha
         $this->setSecret('1234');
         $this->guess('15555')->shouldReturn('+');
     }
+
+The modification of the `guess` method to make the example pass is the next one and after the change we also have 3 scenarios out of 14 working
+
+    public function guess($guess)
+    {
+        $mark = '';
+
+        if (0 === strpos($this->getSecret(), $guess[0]) ) {
+            $mark .= '+';
+        } else if (0 < strpos($this->getSecret(), $guess[0]) ) {
+            $mark .= '-';
+        }
+
+        return $mark;
+    }

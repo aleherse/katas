@@ -37,10 +37,10 @@ class CodebreakerCommand extends Command
     {
         $mark = '';
 
-        if (strpos($this->getSecret(), $guess[0])) {
+        if (0 === strpos($this->getSecret(), $guess[0]) ) {
+            $mark .= '+';
+        } else if (0 < strpos($this->getSecret(), $guess[0]) ) {
             $mark .= '-';
-        } else {
-            $mark .= '';
         }
 
         return $mark;
