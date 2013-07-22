@@ -210,3 +210,11 @@ To make this example pass we only need to modify the `guess` method to iterate t
     }
 
 To our surprise we have jumped from 3 scenarios out 14 to eleven passing scenarios
+
+It is time to see why we have three failing scenarios left, if we read the error message `Expected mark +-- but got --+` we can easily see that our solution is given the correct mark but not in the expected order so lets write a new example the ammend the problem
+
+    function it_returns_a_plus_and_a_minus_mark_with_a_number_match_and_an_exact_match()
+    {
+        $this->setSecret('1234');
+        $this->guess('2535')->shouldReturn('+-');
+    }
