@@ -322,3 +322,38 @@ With the second refactor we can extract some methods
 
         return false !== $pos && $pos != $index;
     }
+
+And with the last refactor we can remove duplications
+
+    public function guess($guess)
+    {
+        $exactMatch  = str_repeat('+', $this->matchCount('isExactMatch',  $guess));
+        $numberMatch = str_repeat('-', $this->matchCount('isNumberMatch', $guess));
+
+        return $exactMatch . $numberMatch;
+    }
+
+    protected function matchCount($method, $guess)
+    {
+        $count = 0;
+
+        for ($i = 0; $i < 4; $i++) {
+            if ($this->$method($guess, $i)) {
+                $count++;
+            }
+        }
+
+        return $count;
+    }
+
+    protected function isExactMatch($guess, $index)
+    {
+        return $this->getSecret()[$index] == $guess[$index];
+    }
+
+    protected function isNumberMatch($guess, $index)
+    {
+        $pos = strpos($this->getSecret(), $guess[$index]);
+
+        return false !== $pos && $pos != $index;
+    }
