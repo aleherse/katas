@@ -37,10 +37,12 @@ class CodebreakerCommand extends Command
     {
         $mark = '';
 
-        if ($this->exactMatch($guess, 0)) {
-            $mark .= '+';
-        } elseif ($this->numberMatch($guess, 0)) {
-            $mark .= '-';
+        for ($i = 0; $i < 4; $i++) {
+            if ($this->exactMatch($guess, $i)) {
+                $mark .= '+';
+            } elseif ($this->numberMatch($guess, $i)) {
+                $mark .= '-';
+            }
         }
 
         return $mark;

@@ -191,3 +191,22 @@ lets go for the next easier scenario, it has to return two minus marks with two 
         $this->setSecret('1234');
         $this->guess('2355')->shouldReturn('--');
     }
+
+To make this example pass we only need to modify the `guess` method to iterate through all the numbers of the guess
+
+    public function guess($guess)
+    {
+        $mark = '';
+
+        for ($i = 0; $i < 4; $i++) {
+            if ($this->exactMatch($guess, $i)) {
+                $mark .= '+';
+            } elseif ($this->numberMatch($guess, $i)) {
+                $mark .= '-';
+            }
+        }
+
+        return $mark;
+    }
+
+To our surprise we have jumped from 3 scenarios out 14 to eleven passing scenarios
