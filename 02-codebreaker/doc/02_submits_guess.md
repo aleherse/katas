@@ -183,3 +183,11 @@ We are on fire but before moving to another scenario it's time to refactor our c
     }
 
 Now the intention behind the `guess` method is really clear reading the actual code and also the scenarios and examples are working as before
+
+lets go for the next easier scenario, it has to return two minus marks with two numbers match
+
+    function it_returns_2_minus_marks_with_a_guess_with_2_number_match()
+    {
+        $this->setSecret('1234');
+        $this->guess('2355')->shouldReturn('--');
+    }
