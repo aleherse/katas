@@ -115,4 +115,21 @@ So now 1 scenario out of 14 is working, the next easier scenario is when one num
         $this->guess('25555')->shouldReturn('-');
     }
 
-As always the example is failing
+As always the example is failing an to make it pass the logic we need is
+
+    public function guess($guess)
+    {
+        $mark = '';
+
+        if (strpos($this->getSecret(), $guess[0])) {
+            $mark .= '-';
+        } else {
+            $mark .= '';
+        }
+
+        return $mark;
+    }
+
+I am sure you know a better implementation of the algorithm or at least something to make it pass several scenario at once, but the objective of BDD is do the minimun effort to make the actual step/example pass. My point here is that as you get experience in this methodology if you are confidence enough you can make bigger and bigger steps
+
+With the previous code all the phpspec examples are working and in behat we have 2 scenarios out of 14 running

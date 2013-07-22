@@ -35,6 +35,14 @@ class CodebreakerCommand extends Command
 
     public function guess($guess)
     {
-        return '';
+        $mark = '';
+
+        if (strpos($this->getSecret(), $guess[0])) {
+            $mark .= '-';
+        } else {
+            $mark .= '';
+        }
+
+        return $mark;
     }
 }
