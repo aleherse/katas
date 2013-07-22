@@ -133,3 +133,11 @@ As always the example is failing an to make it pass the logic we need is
 I am sure you know a better implementation of the algorithm or at least something to make it pass several scenario at once, but the objective of BDD is do the minimun effort to make the actual step/example pass. My point here is that as you get experience in this methodology if you are confidence enough you can make bigger and bigger steps
 
 With the previous code all the phpspec examples are working and in behat we have 2 scenarios out of 14 running
+
+It's time to move to the behaviour when we find an exact match and then test that the example is failing
+
+    function it_returns_a_plus_mark_with_a_guess_with_one_exact_match()
+    {
+        $this->setSecret('1234');
+        $this->guess('15555')->shouldReturn('+');
+    }

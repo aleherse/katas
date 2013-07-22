@@ -51,4 +51,10 @@ class CodebreakerCommandSpec extends ObjectBehavior
         $this->setSecret('1234');
         $this->guess('25555')->shouldReturn('-');
     }
+
+    function it_returns_a_plus_mark_with_a_guess_with_one_exact_match()
+    {
+        $this->setSecret('1234');
+        $this->guess('15555')->shouldReturn('+');
+    }
 }
