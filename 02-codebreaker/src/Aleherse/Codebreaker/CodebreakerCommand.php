@@ -35,30 +35,44 @@ class CodebreakerCommand extends Command
 
     public function guess($guess)
     {
-        $exactMatchCount = 0;
-        $numberMatchCount = 0;
-
-        for ($i = 0; $i < 4; $i++) {
-            if ($this->exactMatch($guess, $i)) {
-                $exactMatchCount++;
-            }
-        }
-
-        for ($i = 0; $i < 4; $i++) {
-            if ($this->numberMatch($guess, $i)) {
-                $numberMatchCount++;
-            }
-        }
+        $exactMatchCount = $this->exactMatchCount($guess);
+        $numberMatchCount = $this->numberMatchCount($guess);
 
         return str_repeat('+', $exactMatchCount) . str_repeat('-', $numberMatchCount);
     }
 
-    protected function exactMatch($guess, $index)
+    protected function numberMatchCount($guess)
+    {
+        $numberMatchCount = 0;
+
+        for ($i = 0; $i < 4; $i++) {
+            if ($this->isNumberMatch($guess, $i)) {
+                $numberMatchCount++;
+            }
+        }
+
+        return $numberMatchCount;
+    }
+
+    protected function exactMatchCount($guess)
+    {
+        $exactMatchCount = 0;
+
+        for ($i = 0; $i < 4; $i++) {
+            if ($this->isExactMatch($guess, $i)) {
+                $exactMatchCount++;
+            }
+        }
+
+        return $exactMatchCount;
+    }
+
+    protected function isExactMatch($guess, $index)
     {
         return $this->getSecret()[$index] == $guess[$index];
     }
 
-    protected function numberMatch($guess, $index)
+    protected function isNumberMatch($guess, $index)
     {
         $pos = strpos($this->getSecret(), $guess[$index]);
 
