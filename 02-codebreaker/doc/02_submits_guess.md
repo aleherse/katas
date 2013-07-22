@@ -107,4 +107,12 @@ As expected the example is failing, to make it pass we only need to return an em
         return '';
     }
 
-So now 1 scenario out of 14 is working
+So now 1 scenario out of 14 is working, the next easier scenario is when one number is correct because of a number match and this is the behaviour we are expecting
+
+    function it_returns_a_minus_mark_with_a_guess_with_one_number_match()
+    {
+        $this->setSecret('1234');
+        $this->guess('25555')->shouldReturn('-');
+    }
+
+As always the example is failing
