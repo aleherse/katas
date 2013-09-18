@@ -71,7 +71,7 @@ class FeatureContext extends BehatContext
 
     protected function getDisplayLine()
     {
-        if (null === $this->display) {
+        if ([] === $this->display) {
             $this->display = explode("\n",$this->applicationTester->getDisplay());
         }
 
