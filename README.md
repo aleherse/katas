@@ -1,11 +1,4 @@
-# Exercises to practice BDD
+# Programming Katas
 
-I have decided to create a repository with all the katas I am programming to learn how to use phpspec2 and Behat.
+This repository contains all the katas I have being doing and a virtual machine with all the tools I use to program in PHP using Behaviour Driven Development.
 
-Each folder will be related to an exercise/book I have discovered to practice with this tools.
-
-# Documentation and books
-
- * [phpspec2](http://www.phpspec.net/)
- * [Behat](http://behat.org/)
- * [RSpec Book](http://www.amazon.com/RSpec-Book-Behaviour-Development-Cucumber/dp/1934356379?tag=r601000000-20)
