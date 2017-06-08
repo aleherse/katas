@@ -3,7 +3,7 @@ FROM php:7.1-apache
 # install software
 RUN apt-get update && apt-get install -yq git vim zip libpq-dev && \
     docker-php-ext-install pdo pdo_pgsql && \
-    pecl install xdebug && \
+    pecl install xdebug ds && \
     docker-php-ext-enable xdebug && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

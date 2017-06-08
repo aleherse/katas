@@ -1,0 +1,14 @@
+{
+    "require-dev": {
+        "phpspec/phpspec": "^3.2"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-4": {"": "src"}
+    },
+    "require": {
+        "php-ds/php-ds": "^1.1"
+    }
+}
