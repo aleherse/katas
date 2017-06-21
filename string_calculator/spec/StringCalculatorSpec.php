@@ -13,7 +13,7 @@ class StringCalculatorSpec extends ObjectBehavior
         $this->calculate('')->shouldReturn(0.0);
     }
 
-    function it_returns_the_number_if_the_operation_contains_just_a_number()
+    function it_returns_the_number_if_operation_contains_just_a_number()
     {
         $this->calculate('4')->shouldReturn(4.0);
     }

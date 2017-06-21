@@ -8,7 +8,7 @@ that there is going to be just one blank space between its elements and that all
 The requirements are:
 
  * It returns 0 if the operation is empty
- * It returns the number it the operation contains just a number
+ * It returns the number if operation contains just a number
  * It supports addition (3 + 2 = 5.0)
  * It supports subtraction (4 - 1 = 3.0)
  * It supports more than one operation (3 + 2 - 1 + 8 = 12.0)
