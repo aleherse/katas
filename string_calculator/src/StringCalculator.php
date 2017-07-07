@@ -1,7 +1,5 @@
 <?php
 
-use Ds\Queue;
-use Ds\Stack;
 
 class StringCalculator
 {
@@ -11,109 +9,83 @@ class StringCalculator
 
     public function __construct()
     {
-        $binary = function (callable $operation, Stack $stack) {
-            $b = $stack->pop();
-            $a = $stack->pop();
-
-            return $operation($a, $b);
-        };
-
         $this->operations = [
-            '+' => function (Stack $stack) use ($binary) {
-                return $binary(function ($a, $b) { return $a + $b; }, $stack);
-            },
-            '-' => function (Stack $stack) use ($binary) {
-                return $binary(function ($a, $b) { return $a - $b; }, $stack);
-            },
-            '*' => function (Stack $stack) use ($binary) {
-                return $binary(function ($a, $b) { return $a * $b; }, $stack);
-            },
-            '/' => function (Stack $stack) use ($binary) {
-                return $binary(function ($a, $b) { return $a / $b; }, $stack);
-            },
-            '^' => function (Stack $stack) use ($binary) {
-                return $binary(function ($a, $b) { return pow($a, $b); }, $stack);
-            },
-        ];
-
-        $this->precedence = [
-            '+' => 2,
-            '-' => 2,
-            '*' => 3,
-            '/' => 3,
-            '^' => 4,
+           '+' => ['precedence' => 2, 'operation' => function ($a, $b) { return $a + $b; }],
+           '-' => ['precedence' => 2, 'operation' => function ($a, $b) { return $a - $b; }],
+           '*' => ['precedence' => 3, 'operation' => function ($a, $b) { return $a * $b; }],
+           '/' => ['precedence' => 3, 'operation' => function ($a, $b) { return $a / $b; }],
+           '^' => ['precedence' => 4, 'operation' => function ($a, $b) { return pow($a, $b); }],
         ];
     }
 
-    public function calculate(string $operation): float
+    public function calculate(string $expression): float
     {
-        if (empty($operation)) {
+        if (empty($expression)) {
             return 0.0;
         }
 
-        $elements = $this->extractOperationElements($operation);
-        $rpn = $this->createReversePolishNotation($elements);
-
-        return $this->processReversePolishNotation($rpn);
+        return $this->resolveReversePolishNotation(
+            $this->buildReversePolishNotation(
+                $this->extractElements($expression)
+            )
+        );
     }
 
-    /**
-     * @param string $operation
-     *
-     * @return array
-     */
-    private function extractOperationElements(string $operation): array
+    private function extractElements(string $expression): array
     {
         $elements = [];
-        preg_match_all(self::REGULAR_EXPRESSION, $operation, $elements);
+        preg_match_all(self::REGULAR_EXPRESSION, $expression, $elements);
 
         return $elements[1];
     }
 
-    /**
-     * @param $rpn
-     *
-     * @return mixed
-     */
-    private function processReversePolishNotation(Queue $rpn)
+    private function buildReversePolishNotation(array $elements): array
     {
-        $output = new Stack();
-        while (!$rpn->isEmpty()) {
-            if (isset($this->operations[$rpn->peek()])) {
-                $output->push($this->operations[$rpn->pop()]($output));
-            } else {
-                $output->push($rpn->pop());
-            }
-        }
-
-        return $output->pop();
-    }
-
-    /**
-     * @param $elements
-     *
-     * @return Queue
-     */
-    private function createReversePolishNotation($elements): Queue
-    {
-        $operators = new Stack();
-        $rpn = new Queue();
+        $rpn = [];
+        $operators = new \Ds\Stack();
         foreach ($elements as $element) {
             if (isset($this->operations[$element])) {
-                while(!$operators->isEmpty() && $this->precedence[$operators->peek()] >= $this->precedence[$element]) {
-                    $rpn->push($operators->pop());
+                while (!$operators->isEmpty() && $this->precedence($operators->peek()) >= $this->precedence($element)) {
+                    $rpn[] = $operators->pop();
                 }
 
                 $operators->push($element);
             } else {
-                $rpn->push((float) $element);
+                $rpn[] = (float) $element;
             }
         }
 
         while (!$operators->isEmpty()) {
-            $rpn->push($operators->pop());
+            $rpn[] = $operators->pop();
         }
 
         return $rpn;
+    }
+
+    private function resolveReversePolishNotation(array $rpn): float
+    {
+        $stack = new \Ds\Stack();
+        foreach ($rpn as $element) {
+            if (isset($this->operations[$element])) {
+                $b = $stack->pop();
+                $a = $stack->pop();
+
+                $stack->push($this->operate($element, $a, $b));
+            } else {
+                $stack->push($element);
+            }
+        }
+
+        return $stack->pop();
+    }
+
+    private function precedence(string $element): int
+    {
+        return $this->operations[$element]['precedence'];
+    }
+
+    private function operate(string $operation, float $a, float $b): float
+    {
+        return $this->operations[$operation]['operation']($a, $b);
     }
 }
