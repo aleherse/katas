@@ -7,38 +7,38 @@ use Prophecy\Argument;
 
 class RomanNumeralsSpec extends ObjectBehavior
 {
-    function it_converts_from_arabic_1_to_roman_numeral_I()
+    function it_converts_from_1_to_3()
     {
         $this->fromArabic(1)->shouldReturn('I');
-    }
-
-    function it_converts_from_arabic_2_to_roman_numeral_II()
-    {
         $this->fromArabic(2)->shouldReturn('II');
+        $this->fromArabic(3)->shouldReturn('III');
     }
 
-    function it_converts_from_arabic_4_to_roman_numeral_IV()
-    {
-        $this->fromArabic(4)->shouldReturn('IV');
-    }
-
-    function it_converts_from_arabic_5_to_roman_numeral_V()
-    {
-        $this->fromArabic(5)->shouldReturn('V');
-    }
-
-    function it_converts_from_arabic_10_to_roman_numeral_X()
+    function it_converts_multiples_of_10()
     {
         $this->fromArabic(10)->shouldReturn('X');
-    }
-
-    function it_converts_from_arabic_27_to_roman_numeral_XXVII()
-    {
-        $this->fromArabic(27)->shouldReturn('XXVII');
-    }
-
-    function it_converts_from_arabic_20_to_roman_numeral_XX()
-    {
         $this->fromArabic(20)->shouldReturn('XX');
+        $this->fromArabic(30)->shouldReturn('XXX');
+    }
+
+    function it_converts_from_5_to_8()
+    {
+        $this->fromArabic(5)->shouldReturn('V');
+        $this->fromArabic(6)->shouldReturn('VI');
+        $this->fromArabic(7)->shouldReturn('VII');
+        $this->fromArabic(8)->shouldReturn('VIII');
+    }
+
+    function it_converts_4_9_40_90()
+    {
+        $this->fromArabic(4)->shouldReturn('IV');
+        $this->fromArabic(9)->shouldReturn('IX');
+        $this->fromArabic(40)->shouldReturn('XL');
+        $this->fromArabic(90)->shouldReturn('XC');
+    }
+
+    function it_converts_148_to_CXLVIII()
+    {
+        $this->fromArabic(148)->shouldReturn('CXLVIII');
     }
 }

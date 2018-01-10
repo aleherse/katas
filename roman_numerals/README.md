@@ -1,6 +1,6 @@
-Fragment of code created during the London Code Dojo meetup 33
- * slides: https://speakerdeck.com/sleepyfox/code-dojo-33 
- * event: http://www.meetup.com/London-Code-Dojo/events/222393947/
+Fragment of code created for the talk introduction to TDD
+ * slides: https://www.slideshare.net/aleherse/introduccin-al-desarrollo-guiado-por-pruebas 
+ * event: https://www.meetup.com/PHPGranada/events/246092925/
 
 # Kata: Roman Numerals
 Write a function to convert from normal numbers to Roman Numerals
